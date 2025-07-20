@@ -8,6 +8,7 @@ import Home from '../pages/Home/Home';
 import LogIn from '../pages/LogIn/LogIn';
 import Register from '../pages/Register/Register';
 import AuthLayout from '../Layout/AuthLayout';
+import TeachOn from '../pages/TeachOn/TeachOn';
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
             index: true,
             path: "/",
             Component: Home
+        },
+        {
+          path: "/teach-on",
+          Component: TeachOn
         }
     ]
   },
