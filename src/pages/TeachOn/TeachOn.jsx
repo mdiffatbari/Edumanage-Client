@@ -18,8 +18,10 @@ const TeachOn = () => {
             experience: form.experience.value,
             title: form.title.value,
             category: form.category.value,
-            status: 'pending'
+            status: 'pending',
+            role: 'user'
         };
+
 
         try {
             const res = await axios.post('http://localhost:3000/teacher-requests', formData);
@@ -102,47 +104,47 @@ const TeachOn = () => {
     return (
         <div className='py-20'>
             <div className="max-w-2xl mx-auto mt-20 p-4 shadow-lg bg-white rounded-lg">
-            <h2 className="text-2xl font-bold mb-6 text-center">Apply to Teach on Edumanage</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label>Name:</label>
-                    <input type="text" value={user.displayName} disabled className="input input-bordered w-full" />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={user.email} disabled className="input input-bordered w-full" />
-                </div>
-                <div>
-                    <label>Photo URL:</label>
-                    <input type="text" value={user.photoURL} disabled className="input input-bordered w-full" />
-                </div>
-                <div>
-                    <label>Experience:</label>
-                    <select name="experience" className="select select-bordered w-full" required>
-                        <option value="">Select</option>
-                        <option value="beginner">Beginner</option>
-                        <option value="mid-level">Mid-level</option>
-                        <option value="experienced">Experienced</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Title:</label>
-                    <input type="text" name="title" className="input input-bordered w-full" placeholder="E.g., Frontend Instructor" required />
-                </div>
-                <div>
-                    <label>Category:</label>
-                    <select name="category" className="select select-bordered w-full" required>
-                        <option value="">Select</option>
-                        <option value="web development">Web Development</option>
-                        <option value="digital marketing">Digital Marketing</option>
-                        <option value="graphic design">Graphic Design</option>
-                        <option value="data science">Data Science</option>
-                        <option value="AI/ML">AI/ML</option>
-                    </select>
-                </div>
-                <button type="submit" className="btn bg-[#cb3f02] text-white w-full">Submit for Review</button>
-            </form>
-        </div>
+                <h2 className="text-2xl font-bold mb-6 text-center">Apply to Teach on Edumanage</h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label>Name:</label>
+                        <input type="text" value={user.displayName} disabled className="input input-bordered w-full" />
+                    </div>
+                    <div>
+                        <label>Email:</label>
+                        <input type="email" value={user.email} disabled className="input input-bordered w-full" />
+                    </div>
+                    <div>
+                        <label>Photo URL:</label>
+                        <input type="text" value={user.photoURL} disabled className="input input-bordered w-full" />
+                    </div>
+                    <div>
+                        <label>Experience:</label>
+                        <select name="experience" className="select select-bordered w-full" required>
+                            <option value="">Select</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="mid-level">Mid-level</option>
+                            <option value="experienced">Experienced</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Title:</label>
+                        <input type="text" name="title" className="input input-bordered w-full" placeholder="E.g., Frontend Instructor" required />
+                    </div>
+                    <div>
+                        <label>Category:</label>
+                        <select name="category" className="select select-bordered w-full" required>
+                            <option value="">Select</option>
+                            <option value="web development">Web Development</option>
+                            <option value="digital marketing">Digital Marketing</option>
+                            <option value="graphic design">Graphic Design</option>
+                            <option value="data science">Data Science</option>
+                            <option value="AI/ML">AI/ML</option>
+                        </select>
+                    </div>
+                    <button type="submit" className="btn bg-[#cb3f02] text-white w-full">Submit for Review</button>
+                </form>
+            </div>
         </div>
     );
 };

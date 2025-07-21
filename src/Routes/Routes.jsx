@@ -9,6 +9,11 @@ import LogIn from '../pages/LogIn/LogIn';
 import Register from '../pages/Register/Register';
 import AuthLayout from '../Layout/AuthLayout';
 import TeachOn from '../pages/TeachOn/TeachOn';
+import DashboardLayout from '../Layout/DashboardLayout';
+import TeacherRequest from '../pages/Dashboard/TeacherRequest/TeacherRequest';
+import Users from '../pages/Dashboard/Users/Users';
+import AllClasses from '../pages/Dashboard/AllClasses/AllClasses';
+import Profile from '../pages/Dashboard/Profile/Profile';
 
 export const router = createBrowserRouter([
   {
@@ -40,5 +45,27 @@ export const router = createBrowserRouter([
         Component: Register
       }
     ]
+  },
+  {
+     path: "/dashboard",
+     Component: DashboardLayout,
+     children: [
+      {
+        path: "/dashboard/teacher-request",
+        Component: TeacherRequest
+      },
+      {
+        path: "/dashboard/users",
+        Component: Users
+      },
+      {
+        path: "/dashboard/all-classes",
+        Component: AllClasses
+      },
+      {
+        path: "/dashboard/profile",
+        Component: Profile
+      }
+     ]
   }
 ]);
