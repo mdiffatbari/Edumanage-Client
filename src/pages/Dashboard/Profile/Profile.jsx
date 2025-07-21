@@ -20,7 +20,7 @@ const Profile = () => {
   );
 
   return (
-    <div className="relative max-w-4xl mx-auto mt-10">
+    <div className="relative max-w-4xl mx-auto mt-10 -z-30">
       {/* Banner */}
       <div className="h-48 bg-gradient-to-r from-[#00262b] to-[#cb3f02] rounded-xl shadow-lg flex items-center justify-center text-white text-4xl font-semibold py-12 mb-12">
         Profile
