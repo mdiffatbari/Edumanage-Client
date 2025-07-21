@@ -85,20 +85,20 @@ const TeachOn = () => {
     if (!user) return <p className='text-center mt-20'>Please log in to apply.</p>;
 
     if (status === 'approved') {
-        return <div className="text-center mt-20 text-green-600 font-bold">You are now a teacher on Edumanage!</div>;
+        return <div className="text-center mt-20 text-green-600 font-bold py-20">You are now a teacher on Edumanage!</div>;
     }
 
     if (status === 'rejected') {
         return (
             <div className="text-center mt-20">
-                <p className="text-red-600 font-bold">Your request was rejected.</p>
+                <p className="text-red-600 font-bold py-20">Your request was rejected.</p>
                 <button onClick={handleReRequest} className="btn btn-warning mt-4">Request Again</button>
             </div>
         );
     }
 
     if (status === 'pending') {
-        return <div className="text-center mt-20 text-yellow-600 font-bold">Your request is under review.</div>;
+        return <div className="text-center mt-20 text-yellow-600 font-bold py-20">Your request is under review.</div>;
     }
 
     return (
