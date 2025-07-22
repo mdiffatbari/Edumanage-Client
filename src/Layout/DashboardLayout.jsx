@@ -32,7 +32,7 @@ const DashboardLayout = () => {
 
           {/* Teacher Links */}
           <li><NavLink to="/dashboard/add-class" className={({ isActive }) => isActive ? activeLink : normalLink}>Add Class</NavLink></li>
-          <li><NavLink to="/dashboard/my-classes" className={({ isActive }) => isActive ? activeLink : normalLink}>My Classes</NavLink></li>
+          <li><NavLink to="/dashboard/my-class" className={({ isActive }) => isActive ? activeLink : normalLink}>My Classes</NavLink></li>
 
           {/* Student Links */}
           <li><NavLink to="/dashboard/my-enroll-classes" className={({ isActive }) => isActive ? activeLink : normalLink}>My Enroll Classes</NavLink></li>
