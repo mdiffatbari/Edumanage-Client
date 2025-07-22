@@ -16,6 +16,7 @@ import AllClasses from '../pages/Dashboard/AllClasses/AllClasses';
 import Profile from '../pages/Dashboard/Profile/Profile';
 import AddClass from '../pages/Dashboard/AddClass/AddClass';
 import MyClass from '../pages/Dashboard/MyClass/MyClass';
+import AllClassesOne from '../pages/AllClasses/AllClassesOne';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
         {
           path: "/teach-on",
           Component: TeachOn
+        },
+        {
+          path: "/all-classes",
+          Component: AllClassesOne
         }
     ]
   },
