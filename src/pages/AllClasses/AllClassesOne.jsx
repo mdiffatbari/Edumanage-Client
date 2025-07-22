@@ -11,8 +11,8 @@ const AllClassesOne = () => {
   }, []);
 
   return (
-    <div className="p-4 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-8">Approved Classes</h2>
+    <div className="p-4 max-w-7xl mx-auto py-40">
+      <h2 className="text-3xl font-bold text-center mb-8">All Classes</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {approvedClasses.map(cls => (
           <div
