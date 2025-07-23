@@ -17,6 +17,7 @@ import Profile from '../pages/Dashboard/Profile/Profile';
 import AddClass from '../pages/Dashboard/AddClass/AddClass';
 import MyClass from '../pages/Dashboard/MyClass/MyClass';
 import AllClassesOne from '../pages/AllClasses/AllClassesOne';
+import ClassDetails from '../pages/ClassDetails/ClassDetails';
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +37,12 @@ export const router = createBrowserRouter([
         {
           path: "/all-classes",
           Component: AllClassesOne
+        },
+        {
+          path: "/class/:id",
+          Component: ClassDetails
         }
+        
     ]
   },
   {

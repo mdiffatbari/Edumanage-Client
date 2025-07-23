@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router';
 
 const AllClassesOne = () => {
   const [approvedClasses, setApprovedClasses] = useState([]);
@@ -31,7 +32,9 @@ const AllClassesOne = () => {
               <div className="mt-auto">
                 <p className="text-lg font-semibold text-green-600">৳ {cls.price}</p>
                 <p className="text-sm text-gray-600">Total Enrolled: {cls.enrolled || 0}</p>
-                <button className="mt-3 w-full btn bg-[#cb3f02] text-white btn-sm">Enroll</button>
+                <Link to={`/class/${cls._id}`}>
+                  <button className="mt-3 w-full btn bg-[#cb3f02] text-white btn-sm">Enroll</button>
+                </Link>
               </div>
             </div>
           </div>
