@@ -1,4 +1,4 @@
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -38,9 +38,9 @@ const ClassDetails = () => {
           
           <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <p className="text-2xl font-bold text-[#cb3f02]">৳ {cls.price}</p>
-            <button className="btn bg-[#cb3f02] text-white hover:bg-[#b03601] transition px-6 py-2 rounded-md w-full sm:w-auto">
+            <Link to={`/payment/${id}`}><button className="btn bg-[#cb3f02] text-white hover:bg-[#b03601] transition px-6 py-2 rounded-md w-full sm:w-auto">
               Pay Now
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>

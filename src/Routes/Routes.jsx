@@ -18,6 +18,8 @@ import AddClass from '../pages/Dashboard/AddClass/AddClass';
 import MyClass from '../pages/Dashboard/MyClass/MyClass';
 import AllClassesOne from '../pages/AllClasses/AllClassesOne';
 import ClassDetails from '../pages/ClassDetails/ClassDetails';
+import Payment from '../pages/Payment/Payment';
+import MyEnrollClass from '../pages/Dashboard/MyEnrollClass/MyEnrollClass';
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +43,10 @@ export const router = createBrowserRouter([
         {
           path: "/class/:id",
           Component: ClassDetails
+        },
+        {
+          path: "/payment/:id",
+          Component: Payment
         }
         
     ]
@@ -86,6 +92,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/my-class",
         Component: MyClass
+      },
+      {
+        path: "/dashboard/my-enroll-classes",
+        Component: MyEnrollClass
       }
      ]
   }
