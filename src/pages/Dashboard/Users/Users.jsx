@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -33,6 +34,15 @@ const Users = () => {
           );
           setUsers(updatedUsers);
           setFilteredUsers(updatedUsers);
+
+          // Show SweetAlert success popup
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'User promoted to admin successfully.',
+            timer: 2000,
+            showConfirmButton: false,
+          });
         }
       });
   };
