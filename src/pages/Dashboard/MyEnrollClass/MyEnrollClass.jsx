@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const MyEnrollClass = () => {
   const { user } = useContext(AuthContext);
   const [enrolledClasses, setEnrolledClasses] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user?.email) {
@@ -13,6 +15,10 @@ const MyEnrollClass = () => {
         .catch(err => console.error('Failed to fetch enrolled classes:', err));
     }
   }, [user]);
+
+  const handleContinue = (id) => {
+    navigate(`/dashboard/myenroll-class/${id}`);
+  };
 
   return (
     <div className="py-16 px-4">
@@ -25,7 +31,10 @@ const MyEnrollClass = () => {
             <div className="p-4">
               <h2 className="text-xl font-semibold mb-2">{cls.title}</h2>
               <p className="text-gray-600 mb-4">Instructor: {cls.name}</p>
-              <button className="bg-[#cb3f02] hover:bg-[#a63401] text-white py-2 px-4 rounded-md">
+              <button
+                className="bg-[#cb3f02] hover:bg-[#a63401] text-white py-2 px-4 rounded-md"
+                onClick={() => handleContinue(cls._id)}
+              >
                 Continue
               </button>
             </div>

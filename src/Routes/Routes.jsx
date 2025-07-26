@@ -21,6 +21,7 @@ import ClassDetails from '../pages/ClassDetails/ClassDetails';
 import Payment from '../pages/Payment/Payment';
 import MyEnrollClass from '../pages/Dashboard/MyEnrollClass/MyEnrollClass';
 import MyClassDetails from '../pages/Dashboard/MyClassDetails/MyClassDetails';
+import MyEnrollClassDetails from '../pages/Dashboard/MyEnrollClassDetails/MyEnrollClassDetails';
 
 export const router = createBrowserRouter([
   {
@@ -101,6 +102,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/my-enroll-classes",
         Component: MyEnrollClass
+      },
+      {
+        path: "/dashboard/myenroll-class/:id",
+        Component: MyEnrollClassDetails
       }
      ]
   }

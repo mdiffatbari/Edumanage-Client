@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 const AllClasses = () => {
   const [classes, setClasses] = useState([]);
+  const navigate = useNavigate();
 
   const fetchClasses = async () => {
     const res = await axios.get('http://localhost:3000/classes');
@@ -13,7 +15,7 @@ const AllClasses = () => {
   const handleStatusUpdate = async (id, status) => {
     try {
       await axios.patch(`http://localhost:3000/classes/${id}`, { status });
-      await fetchClasses(); 
+      await fetchClasses();
 
       Swal.fire({
         icon: 'success',
@@ -80,10 +82,12 @@ const AllClasses = () => {
               </button>
               <button
                 disabled={item.status === 'rejected'}
+                onClick={() => navigate(`/dashboard/my-class/${item._id}`)}
                 className="btn btn-info btn-sm w-full"
               >
                 Progress
               </button>
+
             </div>
           </div>
         ))}
@@ -140,11 +144,13 @@ const AllClasses = () => {
                       Reject
                     </button>
                     <button
-                      className="btn btn-info btn-xs"
                       disabled={item.status === 'rejected'}
+                      onClick={() => navigate(`/dashboard/my-class/${item._id}`)}
+                      className="btn btn-info btn-xs"
                     >
                       Progress
                     </button>
+
                   </div>
                 </td>
 
