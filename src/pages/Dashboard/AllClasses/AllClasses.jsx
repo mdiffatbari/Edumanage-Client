@@ -76,14 +76,14 @@ const AllClasses = () => {
               <button
                 onClick={() => handleStatusUpdate(item._id, 'rejected')}
                 disabled={item.status === 'rejected'}
-                className="btn btn-error btn-sm w-full"
+                className="btn bg-[#cb3f02] text-white btn-sm w-full"
               >
                 Reject
               </button>
               <button
                 disabled={item.status === 'rejected'}
                 onClick={() => navigate(`/dashboard/my-class/${item._id}`)}
-                className="btn btn-info btn-sm w-full"
+                className="btn bg-[#00262b] text-white btn-sm w-full"
               >
                 Progress
               </button>
@@ -139,14 +139,14 @@ const AllClasses = () => {
                     <button
                       onClick={() => handleStatusUpdate(item._id, 'rejected')}
                       disabled={item.status === 'rejected'}
-                      className="btn btn-error btn-xs"
+                      className="btn bg-[#cb3f02] text-white btn-xs"
                     >
                       Reject
                     </button>
                     <button
                       disabled={item.status === 'rejected'}
                       onClick={() => navigate(`/dashboard/my-class/${item._id}`)}
-                      className="btn btn-info btn-xs"
+                      className="btn bg-[#00262b] text-white btn-xs"
                     >
                       Progress
                     </button>
