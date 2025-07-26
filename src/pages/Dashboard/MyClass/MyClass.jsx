@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import useAuthContext from '../../../hooks/useAuthContext';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
+
 
 const MyClass = () => {
   const { user } = useAuthContext();
+  const navigate = useNavigate();
   const [myClasses, setMyClasses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedClass, setSelectedClass] = useState(null);
@@ -80,7 +83,7 @@ const MyClass = () => {
       {myClasses.length === 0 ? (
         <p className="text-center">No classes added yet.</p>
       ) : (
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {myClasses.map((classItem) => (
             <div key={classItem._id} className="bg-white shadow-md rounded-xl overflow-hidden border">
               <img src={classItem.image} alt={classItem.title} className="w-full h-48 object-cover" />
@@ -92,13 +95,12 @@ const MyClass = () => {
                 <p><strong>Description:</strong> {classItem.description}</p>
                 <p>
                   <strong>Status:</strong>{' '}
-                  <span className={`font-medium ${
-                    classItem.status === 'approved'
+                  <span className={`font-medium ${classItem.status === 'approved'
                       ? 'text-green-600'
                       : classItem.status === 'rejected'
                         ? 'text-red-600'
                         : 'text-yellow-600'
-                  }`}>
+                    }`}>
                     {classItem.status}
                   </span>
                 </p>
@@ -119,18 +121,20 @@ const MyClass = () => {
                   </button>
 
                   <button
-                    onClick={() => Swal.fire({
-                      title: classItem.title,
-                      text: classItem.description,
-                      imageUrl: classItem.image,
-                      imageWidth: 400,
-                      imageHeight: 200,
-                      imageAlt: 'Class Image'
-                    })}
-                    className="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800"
+                    disabled={classItem.status !== 'approved'}
+                    onClick={() => {
+                      if (classItem.status === 'approved') {
+                        navigate(`/dashboard/my-class/${classItem._id}`);
+                      }
+                    }}
+                    className={`px-4 py-2 rounded-md text-white ${classItem.status !== 'approved'
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-gray-700 hover:bg-gray-800'
+                      }`}
                   >
                     See Details
                   </button>
+
                 </div>
               </div>
             </div>
