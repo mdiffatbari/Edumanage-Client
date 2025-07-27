@@ -1,89 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 const MyEnrollClassDetails = () => {
-  const { id } = useParams(); // classId
+  const { classId } = useParams(); // from route /dashboard/myenroll-class/:id
   const [assignments, setAssignments] = useState([]);
-  const [submissions, setSubmissions] = useState({}); // track inputs
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/assignments/${id}`)
-      .then(res => setAssignments(res.data))
-      .catch(err => console.error('Failed to fetch assignments:', err));
-  }, [id]);
+    if (!classId) return;
 
-  const handleChange = (e, assignmentId) => {
-    setSubmissions(prev => ({ ...prev, [assignmentId]: e.target.value }));
-  };
+    const fetchAssignments = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3000/assignments/${classId}`);
+        setAssignments(res.data);
+      } catch (err) {
+        console.error("Error fetching assignments:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleSubmit = async (assignmentId) => {
-    const submissionText = submissions[assignmentId];
-    if (!submissionText) return Swal.fire('Error', 'Please enter your submission first.', 'error');
-
-    try {
-      await axios.post(`http://localhost:3000/assignments/${assignmentId}/submit`, {
-        content: submissionText,
-        studentEmail: 'student@example.com' // Replace with actual user email if available
-      });
-
-      // Update local submission count (optional UI improvement)
-      setAssignments(prev =>
-        prev.map(a =>
-          a._id === assignmentId ? { ...a, submissions: (a.submissions || 0) + 1 } : a
-        )
-      );
-
-      setSubmissions(prev => ({ ...prev, [assignmentId]: '' }));
-      Swal.fire('Success', 'Assignment submitted successfully!', 'success');
-    } catch (error) {
-      console.error(error);
-      Swal.fire('Error', 'Submission failed.', 'error');
-    }
-  };
+    fetchAssignments();
+  }, [classId]);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-bold mb-6">Assignments{id}</h1>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Class Assignments</h1>
+      <p className="text-sm text-gray-500 mb-4">Class ID: {classId}</p>
 
-      {assignments.length === 0 ? (
-        <p>No assignments available for this class.</p>
+      {loading ? (
+        <p>Loading assignments...</p>
+      ) : assignments.length === 0 ? (
+        <p className="text-red-500">No assignments found for this class.</p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="table w-full border">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Deadline</th>
-                <th>Submission</th>
-              </tr>
-            </thead>
-            <tbody>
-              {assignments.map(assignment => (
-                <tr key={assignment._id}>
-                  <td>{assignment.title}</td>
-                  <td>{assignment.description}</td>
-                  <td>{assignment.deadline}</td>
-                  <td className="flex flex-col gap-2">
-                    <textarea
-                      value={submissions[assignment._id] || ''}
-                      onChange={(e) => handleChange(e, assignment._id)}
-                      className="textarea textarea-bordered w-full"
-                      placeholder="Write your answer..."
-                    />
-                    <button
-                      onClick={() => handleSubmit(assignment._id)}
-                      className="btn btn-primary"
-                    >
-                      Submit
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {assignments.map((assignment) => (
+            <div key={assignment._id} className="border p-4 rounded-lg shadow">
+              <h2 className="text-xl font-semibold mb-2">{assignment.title}</h2>
+              <p className="text-sm text-gray-600 mb-2">Deadline: {assignment.deadline}</p>
+              <p className="text-gray-700">{assignment.description}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>

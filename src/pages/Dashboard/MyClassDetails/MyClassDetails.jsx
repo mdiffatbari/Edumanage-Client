@@ -21,6 +21,7 @@ const MyClassDetails = () => {
             .then(res => setClassInfo(res.data))
             .catch(err => {
                 console.error(err);
+                console.log("Class ID from useParams:", id);
                 Swal.fire('Error', 'Failed to load class details.', 'error');
             });
 

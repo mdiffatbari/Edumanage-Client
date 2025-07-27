@@ -104,7 +104,7 @@ export const router = createBrowserRouter([
         Component: MyEnrollClass
       },
       {
-        path: "/dashboard/myenroll-class/:id",
+        path: "/dashboard/myenroll-class/:classId",
         Component: MyEnrollClassDetails
       }
      ]
