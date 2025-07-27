@@ -14,6 +14,7 @@ const MyClassDetails = () => {
     });
     const [assignmentCount, setAssignmentCount] = useState(0);
     const [enrollmentCount, setEnrollmentCount] = useState(0);
+    const [submissionCount, setSubmissionCount] = useState(0);
 
     useEffect(() => {
         // Fetch class info
@@ -34,6 +35,10 @@ const MyClassDetails = () => {
         axios.get(`http://localhost:3000/enrolled?classId=${id}`)
             .then(res => setEnrollmentCount(res.data.length))
             .catch(err => console.error('Enrollment fetch error', err));
+
+        axios.get(`http://localhost:3000/classes/${id}/total-submissions`)
+            .then(res => setSubmissionCount(res.data.totalSubmissions))
+            .catch(err => console.error('Submission fetch error', err));
 
 
     }, [id]);
@@ -85,7 +90,7 @@ const MyClassDetails = () => {
 
                 <div className="card bg-base-100 shadow-md p-4 border">
                     <h2 className="text-xl font-semibold mb-2">Total Submissions</h2>
-                    <p className="text-3xl font-bold">0</p>
+                    <p className="text-3xl font-bold">{submissionCount}</p>
                 </div>
             </div>
 
