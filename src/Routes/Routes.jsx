@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  createBrowserRouter,
-} from "react-router";
+import { createBrowserRouter } from 'react-router';
 import Root from '../pages/Root/Root';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Home from '../pages/Home/Home';
@@ -23,90 +21,108 @@ import MyEnrollClass from '../pages/Dashboard/MyEnrollClass/MyEnrollClass';
 import MyClassDetails from '../pages/Dashboard/MyClassDetails/MyClassDetails';
 import MyEnrollClassDetails from '../pages/Dashboard/MyEnrollClassDetails/MyEnrollClassDetails';
 
+import ProtectedRoute from './ProtectedRoute';
+import DashboardWelcome from '../pages/Dashboard/DashboardWelcome/DashboardWelcome';
+
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     Component: Root,
-    errorElement: <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage />,
     children: [
-        {
-            index: true,
-            path: "/",
-            Component: Home
-        },
-        {
-          path: "/teach-on",
-          Component: TeachOn
-        },
-        {
-          path: "/all-classes",
-          Component: AllClassesOne
-        },
-        {
-          path: "/class/:id",
-          Component: ClassDetails
-        },
-        {
-          path: "/payment/:id",
-          Component: Payment
-        }
-        
-    ]
+      {
+        index: true,
+        path: '/',
+        Component: Home,
+      },
+      {
+        path: '/all-classes',
+        Component: AllClassesOne,
+      },
+      {
+        path: '/teach-on',
+        Component: TeachOn,
+      },
+      {
+        path: '/class/:id',
+        element: (
+          <ProtectedRoute>
+            <ClassDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/payment/:id',
+        element: (
+          <ProtectedRoute>
+            <Payment />
+          </ProtectedRoute>
+        ),
+      },
+    ],
   },
   {
-    path: "/auth",
+    path: '/auth',
     Component: AuthLayout,
     children: [
       {
-        path: "/auth/login",
-        Component: LogIn
+        path: '/auth/login',
+        Component: LogIn,
       },
       {
-        path: "/auth/register",
-        Component: Register
-      }
-    ]
+        path: '/auth/register',
+        Component: Register,
+      },
+    ],
   },
   {
-     path: "/dashboard",
-     Component: DashboardLayout,
-     children: [
+    path: '/dashboard',
+    element: (
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
+    children: [
       {
-        path: "/dashboard/teacher-request",
-        Component: TeacherRequest
+        index: true,
+        Component: DashboardWelcome
       },
       {
-        path: "/dashboard/users",
-        Component: Users
+        path: '/dashboard/teacher-request',
+        Component: TeacherRequest,
       },
       {
-        path: "/dashboard/all-classes",
-        Component: AllClasses
+        path: '/dashboard/users',
+        Component: Users,
       },
       {
-        path: "/dashboard/profile",
-        Component: Profile
+        path: '/dashboard/all-classes',
+        Component: AllClasses,
       },
       {
-        path: "/dashboard/add-class",
-        Component: AddClass
+        path: '/dashboard/profile',
+        Component: Profile,
       },
       {
-        path: "/dashboard/my-class",
-        Component: MyClass
+        path: '/dashboard/add-class',
+        Component: AddClass,
       },
       {
-        path: "/dashboard/my-class/:id",
-        Component: MyClassDetails
+        path: '/dashboard/my-class',
+        Component: MyClass,
       },
       {
-        path: "/dashboard/my-enroll-classes",
-        Component: MyEnrollClass
+        path: '/dashboard/my-class/:id',
+        Component: MyClassDetails,
       },
       {
-        path: "/dashboard/myenroll-class/:classId",
-        Component: MyEnrollClassDetails
-      }
-     ]
-  }
+        path: '/dashboard/my-enroll-classes',
+        Component: MyEnrollClass,
+      },
+      {
+        path: '/dashboard/myenroll-class/:classId',
+        Component: MyEnrollClassDetails,
+      },
+    ],
+  },
 ]);

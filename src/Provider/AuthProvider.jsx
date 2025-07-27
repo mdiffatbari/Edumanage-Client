@@ -19,6 +19,8 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [role, setRole] = useState(null);
+
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -44,17 +46,26 @@ const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
+            if (currentUser?.email) {
+                try {
+                    const res = await fetch(`http://localhost:3000/users/${currentUser.email}`);
+                    const data = await res.json();
+                    setRole(data.role); // <-- set user role from DB
+                } catch (error) {
+                    console.error("Failed to fetch user role", error);
+                }
+            }
             setLoading(false);
         });
-        return () => {
-            unsubscribe();
-        };
+
+        return () => unsubscribe();
     }, []);
 
     const authData = {
         user,
+        role,
         setUser,
         createUser,
         signIn,
