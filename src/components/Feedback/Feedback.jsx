@@ -7,7 +7,7 @@ const Feedback = () => {
   const [cardWidth, setCardWidth] = useState(0);
 
   useEffect(() => {
-    fetch('http://localhost:3000/teaching-evaluations')
+    fetch('https://edumanage-server-virid.vercel.app/teaching-evaluations')
       .then((res) => res.json())
       .then((data) => setFeedbacks(data))
       .catch((err) => console.error('Error fetching feedback:', err));

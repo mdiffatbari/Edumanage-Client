@@ -4,9 +4,7 @@ EduManage is a modern education management platform designed to connect students
 
 ---
 
-## Live Site:
-
-
+## Live Site: https://edumanage-3629e.web.app/
 
 ---
 

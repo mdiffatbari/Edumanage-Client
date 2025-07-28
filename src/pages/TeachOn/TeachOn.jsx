@@ -24,7 +24,7 @@ const TeachOn = () => {
 
 
         try {
-            const res = await axios.post('http://localhost:3000/teacher-requests', formData);
+            const res = await axios.post('https://edumanage-server-virid.vercel.app/teacher-requests', formData);
             setStatus('pending');
             setRequestId(res.data.insertedId);
 
@@ -45,7 +45,7 @@ const TeachOn = () => {
 
     const fetchStatus = async () => {
         try {
-            const res = await axios.get(`http://localhost:3000/teacher-status?email=${user.email}`);
+            const res = await axios.get(`https://edumanage-server-virid.vercel.app/teacher-status?email=${user.email}`);
             const request = res.data;
             if (request) {
                 setStatus(request.status);
@@ -58,7 +58,7 @@ const TeachOn = () => {
 
     const handleReRequest = async () => {
         try {
-            await axios.patch(`http://localhost:3000/teacher-requests/${requestId}`, { status: 'pending' });
+            await axios.patch(`https://edumanage-server-virid.vercel.app/teacher-requests/${requestId}`, { status: 'pending' });
             setStatus('pending');
 
             Swal.fire({

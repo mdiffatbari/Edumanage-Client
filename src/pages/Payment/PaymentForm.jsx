@@ -18,7 +18,7 @@ const PaymentForm = () => {
 
   // Fetch class data
   useEffect(() => {
-    axios.get(`http://localhost:3000/classes/${id}`)
+    axios.get(`https://edumanage-server-virid.vercel.app/classes/${id}`)
       .then(res => setClassInfo(res.data))
       .catch(err => console.error('Failed to fetch class:', err));
   }, [id]);
@@ -52,7 +52,7 @@ const PaymentForm = () => {
         return;
       }
 
-      const response = await axios.post('http://localhost:3000/create-payment', {
+      const response = await axios.post('https://edumanage-server-virid.vercel.app/create-payment', {
         amount: classInfo.price,
         classId: id,
       });
@@ -62,7 +62,7 @@ const PaymentForm = () => {
         console.log('[Mock Payment]', response.data.payment);
 
         // Increase enrolled count for the class
-        await axios.patch(`http://localhost:3000/classes/${id}/enroll`);
+        await axios.patch(`https://edumanage-server-virid.vercel.app/classes/${id}/enroll`);
 
         // Create or update user with student role
         if (user?.email) {
@@ -72,7 +72,7 @@ const PaymentForm = () => {
             photo: user.photoURL || '',
             role: 'student',
           };
-          await axios.put('http://localhost:3000/users', userPayload);
+          await axios.put('https://edumanage-server-virid.vercel.app/users', userPayload);
         }
 
         // ✅ Save enrolled class info
@@ -85,7 +85,7 @@ const PaymentForm = () => {
             classId: classInfo._id,
             enrolledAt: new Date(),
           };
-          await axios.post('http://localhost:3000/enrolled', enrollment);
+          await axios.post('https://edumanage-server-virid.vercel.app/enrolled', enrollment);
         }
 
         // Redirect after short delay
@@ -171,7 +171,7 @@ const PaymentForm = () => {
 
   // Fetch class data
   useEffect(() => {
-    axios.get(`http://localhost:3000/classes/${id}`)
+    axios.get(`https://edumanage-server-virid.vercel.app/classes/${id}`)
       .then(res => setClassInfo(res.data))
       .catch(err => console.error('Failed to fetch class:', err));
   }, [id]);
@@ -205,7 +205,7 @@ const PaymentForm = () => {
       }
 
       // Step 2: Create mock payment on backend
-      const response = await axios.post('http://localhost:3000/create-payment', {
+      const response = await axios.post('https://edumanage-server-virid.vercel.app/create-payment', {
         amount: classInfo.price,
         classId: id,
       });
@@ -217,7 +217,7 @@ const PaymentForm = () => {
       }
 
       // Step 3: Increase enrolled count
-      await axios.patch(`http://localhost:3000/classes/${id}/enroll`);
+      await axios.patch(`https://edumanage-server-virid.vercel.app/classes/${id}/enroll`);
 
       // Step 4: Create or update user role
       if (user?.email) {
@@ -227,7 +227,7 @@ const PaymentForm = () => {
           photo: user.photoURL || '',
           role: 'student',
         };
-        await axios.put('http://localhost:3000/users', userPayload);
+        await axios.put('https://edumanage-server-virid.vercel.app/users', userPayload);
       }
 
       // Step 5: Save enrollment
@@ -240,7 +240,7 @@ const PaymentForm = () => {
         enrolledAt: new Date(),
       };
 
-      const enrollRes = await axios.post('http://localhost:3000/enrolled', enrollment);
+      const enrollRes = await axios.post('https://edumanage-server-virid.vercel.app/enrolled', enrollment);
 
       if (enrollRes.status === 200 || enrollRes.status === 201) {
         Swal.fire({

@@ -45,7 +45,7 @@ const AddClass = () => {
             };
 
 
-            await axios.post('http://localhost:3000/classes', classData);
+            await axios.post('https://edumanage-server-virid.vercel.app/classes', classData);
 
             Swal.fire({
                 icon: 'success',

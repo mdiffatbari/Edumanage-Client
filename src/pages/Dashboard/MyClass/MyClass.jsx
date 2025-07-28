@@ -15,7 +15,7 @@ const MyClass = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/classes?email=${user.email}`)
+        .get(`https://edumanage-server-virid.vercel.app/classes?email=${user.email}`)
         .then((res) => {
           setMyClasses(res.data);
           setLoading(false);
@@ -40,7 +40,7 @@ const MyClass = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:3000/classes/${id}`);
+        await axios.delete(`https://edumanage-server-virid.vercel.app/classes/${id}`);
         setMyClasses(myClasses.filter((item) => item._id !== id));
         Swal.fire('Deleted!', 'Your class has been deleted.', 'success');
       } catch (error) {
@@ -61,7 +61,7 @@ const MyClass = () => {
     };
 
     try {
-      await axios.patch(`http://localhost:3000/classes/${selectedClass._id}`, updatedClass);
+      await axios.patch(`https://edumanage-server-virid.vercel.app/classes/${selectedClass._id}`, updatedClass);
       setMyClasses((prev) =>
         prev.map((item) =>
           item._id === selectedClass._id ? { ...item, ...updatedClass } : item

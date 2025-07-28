@@ -18,7 +18,7 @@ const MyClassDetails = () => {
 
     useEffect(() => {
         // Fetch class info
-        axios.get(`http://localhost:3000/classes/${id}`)
+        axios.get(`https://edumanage-server-virid.vercel.app/classes/${id}`)
             .then(res => setClassInfo(res.data))
             .catch(err => {
                 console.error(err);
@@ -27,16 +27,16 @@ const MyClassDetails = () => {
             });
 
         // Fetch assignment count
-        axios.get(`http://localhost:3000/assignments/${id}`)
+        axios.get(`https://edumanage-server-virid.vercel.app/assignments/${id}`)
             .then(res => setAssignmentCount(res.data.length))
             .catch(err => console.error('Assignment fetch error', err));
 
         // Fetch enrollment count
-        axios.get(`http://localhost:3000/enrolled?classId=${id}`)
+        axios.get(`https://edumanage-server-virid.vercel.app/enrolled?classId=${id}`)
             .then(res => setEnrollmentCount(res.data.length))
             .catch(err => console.error('Enrollment fetch error', err));
 
-        axios.get(`http://localhost:3000/classes/${id}/total-submissions`)
+        axios.get(`https://edumanage-server-virid.vercel.app/classes/${id}/total-submissions`)
             .then(res => setSubmissionCount(res.data.totalSubmissions))
             .catch(err => console.error('Submission fetch error', err));
 
@@ -55,10 +55,10 @@ const MyClassDetails = () => {
         }
 
         try {
-            await axios.post(`http://localhost:3000/classes/${id}/assignments`, assignment);
+            await axios.post(`https://edumanage-server-virid.vercel.app/classes/${id}/assignments`, assignment);
 
             // Refresh assignment count
-            const res = await axios.get(`http://localhost:3000/assignments/${id}`);
+            const res = await axios.get(`https://edumanage-server-virid.vercel.app/assignments/${id}`);
             setAssignmentCount(res.data.length);
 
             setAssignment({ title: '', deadline: '', description: '' });

@@ -7,7 +7,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/users/${user.email}`)
+      fetch(`https://edumanage-server-virid.vercel.app/users/${user.email}`)
         .then(res => res.json())
         .then(data => setUserInfo(data));
     }
