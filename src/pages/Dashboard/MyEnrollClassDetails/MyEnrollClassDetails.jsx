@@ -3,9 +3,11 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Rating } from 'react-simple-star-rating';
+import useAuthContext from '../../../hooks/useAuthContext';
 
 const MyEnrollClassDetails = () => {
   const { classId } = useParams();
+  const { user } = useAuthContext(); // ✅ moved hook to top level
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [submissionData, setSubmissionData] = useState({});
@@ -15,6 +17,7 @@ const MyEnrollClassDetails = () => {
   const [terDescription, setTerDescription] = useState('');
   const [terRating, setTerRating] = useState(0);
   const [terSubmitting, setTerSubmitting] = useState(false);
+  const [classTitle, setClassTitle] = useState('');
 
   useEffect(() => {
     if (!classId) return;
@@ -32,6 +35,14 @@ const MyEnrollClassDetails = () => {
     };
 
     fetchAssignments();
+  }, [classId]);
+
+  useEffect(() => {
+    if (!classId) return;
+
+    axios.get(`http://localhost:3000/classes/${classId}`)
+      .then(res => setClassTitle(res.data.title))
+      .catch(err => console.error('Failed to load class title:', err));
   }, [classId]);
 
   const handleInputChange = (id, value) => {
@@ -84,6 +95,8 @@ const MyEnrollClassDetails = () => {
     try {
       await axios.post('http://localhost:3000/teaching-evaluation', {
         classId,
+        classTitle,
+        name: user?.displayName || 'Anonymous',
         description: terDescription,
         rating: terRating,
       });
@@ -106,7 +119,7 @@ const MyEnrollClassDetails = () => {
           onClick={openTERModal}
           className="btn bg-[#cb3f02] text-white hover:bg-[#a73401]"
         >
-          Teaching Evaluation Report (TER)
+          Teaching Evaluation Report
         </button>
       </div>
 
@@ -153,11 +166,10 @@ const MyEnrollClassDetails = () => {
                     <td className="p-2">
                       <button
                         onClick={() => handleSubmit(assignment._id)}
-                        className={`btn btn-sm text-white ${
-                          submittedAssignments[assignment._id]
-                            ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-[#cb3f02] hover:bg-[#a73401]'
-                        }`}
+                        className={`btn btn-sm text-white ${submittedAssignments[assignment._id]
+                          ? 'bg-gray-400 cursor-not-allowed'
+                          : 'bg-[#cb3f02] hover:bg-[#a73401]'
+                          }`}
                         disabled={submittedAssignments[assignment._id]}
                       >
                         {submittedAssignments[assignment._id]
@@ -195,11 +207,10 @@ const MyEnrollClassDetails = () => {
                 />
                 <button
                   onClick={() => handleSubmit(assignment._id)}
-                  className={`btn w-full text-white ${
-                    submittedAssignments[assignment._id]
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-[#cb3f02] hover:bg-[#a73401]'
-                  }`}
+                  className={`btn w-full text-white ${submittedAssignments[assignment._id]
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-[#cb3f02] hover:bg-[#a73401]'
+                    }`}
                   disabled={submittedAssignments[assignment._id]}
                 >
                   {submittedAssignments[assignment._id]
