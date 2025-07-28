@@ -217,7 +217,7 @@ const PaymentForm = () => {
       }
 
       // Step 3: Increase enrolled count
-      await axios.patch(`https://edumanage-server-virid.vercel.app/classes/${id}/enroll`);
+      //await axios.patch(`https://edumanage-server-virid.vercel.app/classes/${id}/enroll`);
 
       // Step 4: Create or update user role
       if (user?.email) {
