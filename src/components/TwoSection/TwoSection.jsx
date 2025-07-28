@@ -18,9 +18,6 @@ const TwoSection = () => {
                     <p className="mb-6 text-lg md:text-xl">
                         Join EduManage today and start your journey as a learner or educator. Empower your future with accessible, quality education.
                     </p>
-                    <button className="btn bg-[#cb3f02] text-white px-6 rounded-full">
-                        Get Started
-                    </button>
                 </div>
             </div>
             {/*============== section Two========= */}
