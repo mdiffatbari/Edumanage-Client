@@ -17,20 +17,20 @@ EduManage is a modern education management platform designed to connect students
 
 ## Features
 
- ✅ Role-Based Access Control: Separate dashboards and permissions for Admins, Teachers, and Students.
- ✅ Teacher Request & Approval System: Users can apply to become teachers; admins can approve or reject requests.
- ✅ Class Management: Teachers can create, update, and delete classes with rich details.
- ✅ Class Enrollment: Students can enroll in approved classes with real-time availability checks.
- ✅ Assignment System: Teachers can assign homework and track submissions efficiently.
- ✅ Student Assignment Submission: Students can upload assignments and track their progress.
- ✅ Teacher Feedback & Rating: Students can leave feedback and ratings for teachers and classes.
- ✅ Secure Payment Integration: Stripe-based payment gateway for class enrollment and purchases.
- ✅ Responsive & User-Friendly UI: Built with React, TailwindCSS, and DaisyUI for modern and mobile-friendly design.
- ✅ Real-time Notifications & Alerts: Using SweetAlert2 for smooth user feedback on actions.
- ✅ Robust Backend: Node.js, Express, and MongoDB power a scalable and secure API.
- ✅ Auto Enrollment Checks: Prevents duplicate enrollments for students in classes.
- ✅ Popular Classes Highlight: Shows most enrolled classes to help students choose trending courses.
- ✅ Admin User Management: Admins can promote users to admin role and manage users easily.
+- ✅ Role-Based Access Control: Separate dashboards and permissions for Admins, Teachers, and Students.
+- ✅ Teacher Request & Approval System: Users can apply to become teachers; admins can approve or reject requests.
+- ✅ Class Management: Teachers can create, update, and delete classes with rich details.
+- ✅ Class Enrollment: Students can enroll in approved classes with real-time availability checks.
+- ✅ Assignment System: Teachers can assign homework and track submissions efficiently.
+- ✅ Student Assignment Submission: Students can upload assignments and track their progress.
+- ✅ Teacher Feedback & Rating: Students can leave feedback and ratings for teachers and classes.
+- ✅ Secure Payment Integration: Stripe-based payment gateway for class enrollment and purchases.
+- ✅ Responsive & User-Friendly UI: Built with React, TailwindCSS, and DaisyUI for modern and mobile-friendly design.
+- ✅ Real-time Notifications & Alerts: Using SweetAlert2 for smooth user feedback on actions.
+- ✅ Robust Backend: Node.js, Express, and MongoDB power a scalable and secure API.
+- ✅ Auto Enrollment Checks: Prevents duplicate enrollments for students in classes.
+- ✅ Popular Classes Highlight: Shows most enrolled classes to help students choose trending courses.
+- ✅ Admin User Management: Admins can promote users to admin role and manage users easily.
 
 ---
 
