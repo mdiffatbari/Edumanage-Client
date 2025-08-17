@@ -24,7 +24,7 @@ const MyEnrollClassDetails = () => {
 
     const fetchAssignments = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/assignments/${classId}`);
+        const res = await axios.get(`https://edumanage-server-virid.vercel.app/assignments/${classId}`);
         setAssignments(res.data);
       } catch (err) {
         console.error("Error fetching assignments:", err);
@@ -40,7 +40,7 @@ const MyEnrollClassDetails = () => {
   useEffect(() => {
     if (!classId) return;
 
-    axios.get(`http://localhost:3000/classes/${classId}`)
+    axios.get(`https://edumanage-server-virid.vercel.app/classes/${classId}`)
       .then(res => setClassTitle(res.data.title))
       .catch(err => console.error('Failed to load class title:', err));
   }, [classId]);
@@ -57,7 +57,7 @@ const MyEnrollClassDetails = () => {
     }
 
     try {
-      await axios.post(`http://localhost:3000/assignments/${assignmentId}/submit`, {
+      await axios.post(`https://edumanage-server-virid.vercel.app/assignments/${assignmentId}/submit`, {
         classId,
         submissionText: submission,
       });
@@ -93,7 +93,7 @@ const MyEnrollClassDetails = () => {
     setTerSubmitting(true);
 
     try {
-      await axios.post('http://localhost:3000/teaching-evaluation', {
+      await axios.post('https://edumanage-server-virid.vercel.app/teaching-evaluation', {
         classId,
         classTitle,
         name: user?.displayName || 'Anonymous',

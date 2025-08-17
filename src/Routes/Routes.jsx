@@ -23,6 +23,8 @@ import MyEnrollClassDetails from '../pages/Dashboard/MyEnrollClassDetails/MyEnro
 
 import ProtectedRoute from './ProtectedRoute';
 import DashboardWelcome from '../pages/Dashboard/DashboardWelcome/DashboardWelcome';
+import About from '../pages/About/About';
+import Gallery from '../pages/Gallery/Gallery';
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
         index: true,
         path: '/',
         Component: Home,
+      },
+      {
+        path: '/about',
+        Component: About,
+      },
+      {
+        path: '/gallery',
+        Component: Gallery,
       },
       {
         path: '/all-classes',

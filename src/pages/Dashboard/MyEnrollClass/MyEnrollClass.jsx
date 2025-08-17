@@ -10,7 +10,7 @@ const MyEnrollClass = () => {
 
   useEffect(() => {
     if (user?.email) {
-      axios.get(`http://localhost:3000/enrolled?email=${user.email}`)
+      axios.get(`https://edumanage-server-virid.vercel.app/enrolled?email=${user.email}`)
         .then(res => setEnrolledClasses(res.data))
         .catch(err => console.error('Failed to fetch enrolled classes:', err));
     }

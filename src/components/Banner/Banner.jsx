@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import banner1 from "../../assets/banner-a.jpg";
-import banner2 from "../../assets/banner-b.jpg";
-import banner3 from "../../assets/banner-c.jpg";
+import { Link } from 'react-router';
 
 const slides = [
     {
-        image: banner1,
+        image: "/images/banner-a.jpg",
         title: "Unlock Your Potential",
         subtitle: "Join thousands of learners building brighter futures through quality education."
     },
     {
-        image: banner2,
+        image: "/images/banner-b.jpg",
         title: "Flexible Learning for Everyone",
         subtitle: "Access courses anytime, anywhere — on your own schedule."
     },
     {
-        image: banner3,
+        image: "/images/banner-c.jpg",
         title: "Teach and Inspire",
         subtitle: "Share your knowledge and shape the next generation of thinkers and creators."
     }
 ];
+
 
 const Banner = () => {
     const [current, setCurrent] = useState(0);
@@ -37,9 +36,8 @@ const Banner = () => {
                 {slides.map((slide, index) => (
                     <div
                         key={index}
-                        className={`absolute inset-0 transition-opacity duration-1000 ${
-                            current === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                        }`}
+                        className={`absolute inset-0 transition-opacity duration-1000 ${current === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                            }`}
                         style={{
                             backgroundImage: `url(${slide.image})`,
                             backgroundSize: 'cover',
@@ -48,7 +46,13 @@ const Banner = () => {
                     >
                         <div className="w-full h-full bg-black opacity-70 flex flex-col justify-center items-center text-center px-6 md:px-20">
                             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">{slide.title}</h2>
-                            <p className="text-lg md:text-xl text-white max-w-2xl">{slide.subtitle}</p>
+                            <p className="text-lg md:text-xl text-white max-w-2xl pb-5">{slide.subtitle}</p>
+                            <Link
+                                to="/all-classes"
+                                className="bg-[#cb3f02] text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-[#cb3f02] transition"
+                            >
+                                See More
+                            </Link>
                         </div>
                     </div>
                 ))}
@@ -58,9 +62,8 @@ const Banner = () => {
                     {slides.map((_, index) => (
                         <div
                             key={index}
-                            className={`h-3 w-3 rounded-full ${
-                                current === index ? 'bg-[#cb3f02]' : 'bg-white opacity-50'
-                            }`}
+                            className={`h-3 w-3 rounded-full ${current === index ? 'bg-[#cb3f02]' : 'bg-white opacity-50'
+                                }`}
                         />
                     ))}
                 </div>

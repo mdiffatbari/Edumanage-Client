@@ -14,14 +14,16 @@ const Navbar = () => {
     const navLinks = (
         <>
             <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/about">About</NavLink></li>
+            <li><NavLink to="/gallery">Gallery</NavLink></li>
             <li><NavLink to="/all-classes">All Classes</NavLink></li>
             <li><NavLink to="/teach-on">Teach on EduManage</NavLink></li>
         </>
     );
 
     return (
-        <div className='bg-[#f8f8f8]'>
-            <div className="navbar bg-[#f8f8f8] px-4 md:px-8 flex justify-between items-center w-11/12 mx-auto">
+        <div className='bg-[#f8f8f8] sticky left-0 top-0 z-50'>
+            <div className="navbar bg-[#f8f8f8] px-4 md:px-8 flex justify-between items-center md:max-w-[1660px] mx-auto">
                 {/* Left: Logo */}
                 <div className="flex items-center gap-2">
                     <img src={logoIcon} alt="EduManage Logo" className="h-10 w-auto" />
