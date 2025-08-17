@@ -11,8 +11,8 @@ const TotalTrafic = () => {
     const fetchStats = async () => {
       try {
         const [userRes, classRes] = await Promise.all([
-          axios.get('https://edumanage-server-virid.vercel.app/users'),
-          axios.get('https://edumanage-server-virid.vercel.app/classes'),
+          axios.get('http://localhost:3000/users'),
+          axios.get('http://localhost:3000/classes'),
         ]);
         setUsers(userRes.data);
         setClasses(classRes.data);

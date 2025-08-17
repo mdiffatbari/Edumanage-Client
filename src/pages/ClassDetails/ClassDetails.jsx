@@ -7,7 +7,7 @@ const ClassDetails = () => {
   const [cls, setCls] = useState(null);
 
   useEffect(() => {
-    axios.get(`https://edumanage-server-virid.vercel.app/classes/${id}`)
+    axios.get(`http://localhost:3000/classes/${id}`)
       .then(res => setCls(res.data))
       .catch(err => console.error(err));
   }, [id]);

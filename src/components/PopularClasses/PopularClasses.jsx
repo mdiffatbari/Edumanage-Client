@@ -9,7 +9,7 @@ const PopularClasses = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('https://edumanage-server-virid.vercel.app/classes')
+    axios.get('http://localhost:3000/classes')
       .then(res => {
         const sorted = res.data
           .sort((a, b) => b.enrolled - a.enrolled)

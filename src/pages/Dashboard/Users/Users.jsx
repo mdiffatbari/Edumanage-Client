@@ -8,7 +8,7 @@ const Users = () => {
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('https://edumanage-server-virid.vercel.app/users')
+    axios.get('http://localhost:3000/users')
       .then(res => {
         setUsers(res.data);
         setFilteredUsers(res.data);
@@ -26,7 +26,7 @@ const Users = () => {
   };
 
   const makeAdmin = (email) => {
-    axios.patch(`https://edumanage-server-virid.vercel.app/users/admin`, { email })
+    axios.patch(`http://localhost:3000/users/admin`, { email })
       .then(res => {
         if (res.data.modifiedCount > 0) {
           const updatedUsers = users.map(user =>

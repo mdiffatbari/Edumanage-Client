@@ -6,7 +6,7 @@ const AllClassesOne = () => {
   const [approvedClasses, setApprovedClasses] = useState([]);
 
   useEffect(() => {
-    axios.get('https://edumanage-server-virid.vercel.app/classes/approved')
+    axios.get('http://localhost:3000/classes/approved')
       .then(res => setApprovedClasses(res.data))
       .catch(err => console.error(err));
   }, []);

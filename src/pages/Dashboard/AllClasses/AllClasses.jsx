@@ -8,13 +8,13 @@ const AllClasses = () => {
   const navigate = useNavigate();
 
   const fetchClasses = async () => {
-    const res = await axios.get('https://edumanage-server-virid.vercel.app/classes');
+    const res = await axios.get('http://localhost:3000/classes');
     setClasses(res.data);
   };
 
   const handleStatusUpdate = async (id, status) => {
     try {
-      await axios.patch(`https://edumanage-server-virid.vercel.app/classes/${id}`, { status });
+      await axios.patch(`http://localhost:3000/classes/${id}`, { status });
       await fetchClasses();
 
       Swal.fire({

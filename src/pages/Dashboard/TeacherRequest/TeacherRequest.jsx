@@ -6,14 +6,14 @@ const TeacherRequest = () => {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    axios.get('https://edumanage-server-virid.vercel.app/teacher-requests')
+    axios.get('http://localhost:3000/teacher-requests')
       .then(res => setRequests(res.data))
       .catch(err => console.error(err));
   }, []);
 
   const handleStatusChange = async (id, email, status) => {
     try {
-      await axios.patch(`https://edumanage-server-virid.vercel.app/teacher-requests/${id}`, { status, email });
+      await axios.patch(`http://localhost:3000/teacher-requests/${id}`, { status, email });
       setRequests(prev => prev.map(r => r._id === id ? { ...r, status } : r));
       Swal.fire('Success', `Request has been ${status}`, 'success');
     } catch (err) {
