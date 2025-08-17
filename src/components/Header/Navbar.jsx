@@ -20,8 +20,8 @@ const Navbar = () => {
     );
 
     return (
-        <div>
-            <div className="navbar bg-base-100 shadow-sm px-4 md:px-8 flex justify-between items-center">
+        <div className='bg-[#f8f8f8]'>
+            <div className="navbar bg-[#f8f8f8] px-4 md:px-8 flex justify-between items-center w-11/12 mx-auto">
                 {/* Left: Logo */}
                 <div className="flex items-center gap-2">
                     <img src={logoIcon} alt="EduManage Logo" className="h-10 w-auto" />
